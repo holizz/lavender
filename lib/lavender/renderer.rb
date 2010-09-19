@@ -13,7 +13,7 @@ module Lavender
         @input
       when :erb
         def method_missing name
-          @vars[name]
+          @vars[name] || @vars[name.to_s]
         end
         ERB.new(@input).result(binding)
       when :haml
