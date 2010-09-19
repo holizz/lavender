@@ -1,0 +1,20 @@
+= lavender
+
+Minimalistic YAML-based CMS
+
+== Usage
+
+...
+
+== Inspiration
+
+- http://blog.peepcode.com/tutorials/2010/about-this-blog
+- http://jekyllrb.com/
+
+== Author
+
+Tom Adams <tom@holizz.com>
+
+== Copying
+
+ISC licence (see LICENCE for the full text).
