@@ -90,4 +90,37 @@ END
 </html>
 END
   end
+
+  it "should use a default processor and layout" do
+    page = <<END
+---
+title: your face
+---
+%p Document content.
+END
+    layout = <<END
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
+END
+
+    c = Lavender::Converter.new(:page => page, :layouts => {:default => {:erb => layout}}, :defaults => {:layout => :default, :processor => :haml})
+
+    c.render.should == <<END
+<html>
+  <head>
+    <title>your face</title>
+  </head>
+  <body>
+    <p>Document content.</p>
+
+  </body>
+</html>
+END
+  end
 end

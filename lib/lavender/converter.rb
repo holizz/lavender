@@ -2,6 +2,7 @@ module Lavender
   class Converter
     def initialize options
       @options = options
+      @options[:defaults] ||= {}
     end
 
     def render
@@ -12,16 +13,19 @@ module Lavender
       when Hash
         conf = yaml[0]
 
-        r = Renderer.new(conf['processor'].to_sym, yaml[1])
+        pro = conf['processor'] || @options[:defaults][:processor]
+        pro = pro.to_sym unless pro.nil?
+        r = Renderer.new(pro, yaml[1])
         page = r.render(conf)
         output = page
 
-        layout = conf['layout']
+        layout = conf['layout'] || @options[:defaults][:layout]
+        layout = layout.to_sym unless layout.nil?
         if layout
-          hsh = @options[:layouts][layout.to_sym]
-          processor = hsh.keys.first
-          content = hsh[processor]
-          r = Renderer.new(processor, content)
+          hsh = @options[:layouts][layout]
+          pro = hsh.keys.first
+          content = hsh[pro]
+          r = Renderer.new(pro, content)
           output = r.render(conf) { page }
         end
 
