@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Lavender::Renderer do
-  before do
-  end
-
   it "should render raw stuff as-is" do
     page = '<p>My paragraph</p>'
     r = Lavender::Renderer.new(:raw, page)

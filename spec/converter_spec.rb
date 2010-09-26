@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Lavender::Converter do
-  before do
-  end
-
   it "should render anything that isn't YAML as-is" do
     page = "<p>My paragraph</p>"
     c = Lavender::Converter.new(:page => page)
