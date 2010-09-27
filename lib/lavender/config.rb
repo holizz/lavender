@@ -13,6 +13,9 @@ module Lavender
       def initialize(hsh)
         @hsh = hsh
       end
+      def to_hash
+        @hsh
+      end
     end
 
     def method_missing(method, *args)
@@ -23,7 +26,11 @@ module Lavender
 
     def initialize config = nil
       @config = config
-      @config ||= {'defaults' => {'layout' => 'default', 'processor' => 'haml'}}
+      @config ||= {
+        'defaults' => {'layout' => 'default', 'processor' => 'haml'},
+        'paths' => {'pages' => 'pages', 'compiled' => 'compiled'},
+        'pwd' => Dir.pwd
+      }
 
       user_config = {}
       LOCATIONS.each do |y|
