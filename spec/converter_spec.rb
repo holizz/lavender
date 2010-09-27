@@ -1,10 +1,24 @@
 require 'spec_helper'
 
 describe Lavender::Converter do
-  it "should render anything that isn't YAML as-is" do
-    page = "<p>My paragraph</p>"
-    c = Lavender::Converter.new(:page => page)
-    c.render.should == "<p>My paragraph</p>"
+  it "should render anything that isn't YAML with the default layout/processor" do
+    layout = <<END
+<body>
+  <%= yield %>
+</body>
+END
+
+    page = <<END
+%p My paragraph
+END
+
+    c = Lavender::Converter.new(:page => page, :layouts => {:default => {:erb => layout}}, :defaults => {:layout => :default, :processor => :haml})
+    c.render.should == <<END
+<body>
+  <p>My paragraph</p>
+
+</body>
+END
   end
 
   it "should render pages with the given template processor" do
