@@ -2,8 +2,9 @@ require 'fileutils'
 
 module Lavender
   class Static
-    def initialize
+    def initialize verbose = false
       @config = Lavender::Config.new
+      @verbose = verbose
     end
 
     def run
@@ -48,6 +49,10 @@ module Lavender
       FileUtils.mkdir_p File.dirname(path)
       File.open(path, 'w+') do |f|
         f.write data
+      end
+      if @verbose
+        basepath = path.sub(/^#{@config.pwd}\//,'')
+        puts "  create: #{basepath}"
       end
     end
   end

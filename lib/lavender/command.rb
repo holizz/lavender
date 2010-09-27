@@ -8,7 +8,7 @@ module Lavender
         self.help
 
       when 'compile'
-        static = Lavender::Static.new
+        static = Lavender::Static.new true
         static.run
       when 'server'
         raise ArgumentError, "Not yet implemented"

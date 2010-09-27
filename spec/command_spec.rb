@@ -4,7 +4,7 @@ describe Lavender::Command do
   it "should call Static correctly" do
     m=RSpec::Mocks::Mock.new
     m.stub!(:run)
-    Lavender::Static.should_receive(:new).with().and_return(m)
+    Lavender::Static.should_receive(:new).with(true).and_return(m)
     Lavender::Command.run(%w[compile])
   end
 
