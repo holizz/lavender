@@ -87,4 +87,14 @@ END
 Hello there
 END
   end
+
+  it "should copy over public" do
+    stub_files_and_run 'public/t.txt' => <<END
+Some plain text
+END
+    File.should exist 'compiled/t.txt'
+    File.read('compiled/t.txt').should == <<END
+Some plain text
+END
+  end
 end
