@@ -12,8 +12,17 @@ processor: raw
 ---
 <audio src="girlfriendboy.wav"></audio>
 END
+    'pages/hamster.html.yml' => <<END,
+---
+%p Text
+END
     'pages/igonreme.txt' => <<END,
 Ignore this!!!
+END
+    'layouts/main.erb' => <<END,
+<body>
+  <%= yield %>
+</body>
 END
   }
 

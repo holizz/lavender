@@ -4,6 +4,8 @@ describe Lavender::Static do
   before do
     setup_sample_project
     FakeFS.activate!
+    c = Lavender::Static.new
+    c.run
   end
 
   after do
@@ -11,18 +13,24 @@ describe Lavender::Static do
   end
 
   it "should compile raw files" do
-    c = Lavender::Static.new
-    c.run
     File.should exist 'compiled/index.html'
     File.read('compiled/index.html').should == <<END.strip
 <audio src="girlfriendboy.wav"></audio>
 END
   end
 
-  it "should ignore " do
-    c = Lavender::Static.new
-    c.run
+  it "should ignore non-.yml files" do
     File.should_not exist 'compiled/ignoreme.txt'
     File.should_not exist 'compiled/ignoreme'
+  end
+
+  it "should handle layouts and processing languages" do
+    File.should exist 'compiled/hamster.html'
+    File.read('compiled/hamster.html').should == <<END
+<body>
+  <p>Text</p>
+
+</body>
+END
   end
 end

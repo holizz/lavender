@@ -7,13 +7,22 @@ module Lavender
     end
 
     def run
+      # Layouts
+
+      layouts = {}
+      Dir["#{path(:layouts)}/**/*"].each do |file|
+        name, ext = File.basename(file).match(/^(.+)\.([^\.]+)$/)[1..-1]
+        layouts[name.to_sym] = {ext.to_sym => File.read(file)}
+      end
+
+      # Pages
       Dir["#{path(:pages)}/**/*.yml"].each do |file|
         target = file.sub(/^#{path(:pages)}/, path(:compiled))
         target.sub!(/\.yml$/, '')
 
         FileUtils.mkdir_p File.dirname(target)
 
-        conv = Lavender::Converter.new(:page => File.read(file), :defaults => defaults)
+        conv = Lavender::Converter.new(:page => File.read(file), :layouts => layouts, :defaults => defaults)
         File.open(target, 'w+') do |f|
           f.write conv.render
         end

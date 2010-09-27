@@ -28,7 +28,7 @@ module Lavender
       @config = config
       @config ||= {
         'defaults' => {'layout' => 'default', 'processor' => 'haml'},
-        'paths' => {'pages' => 'pages', 'compiled' => 'compiled'},
+        'paths' => {'pages' => 'pages', 'layouts' => 'layouts', 'compiled' => 'compiled'},
         'pwd' => Dir.pwd
       }
 
