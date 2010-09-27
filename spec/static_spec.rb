@@ -73,4 +73,18 @@ END
 </noscript>
 END
   end
+
+  it "should create directories" do
+    stub_files_and_run 'pages/s/ash.html.yml' => <<END
+---
+layout: null
+processor: raw
+---
+Hello there
+END
+    File.should exist 'compiled/s/ash.html'
+    File.read('compiled/s/ash.html').should == <<END
+Hello there
+END
+  end
 end
