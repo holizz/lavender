@@ -3,19 +3,20 @@ require 'spec_helper'
 describe Lavender::Config do
   before do
     setup_sample_project
+    FakeFS.activate!
+  end
+
+  after do
+    FakeFS.deactivate!
   end
 
   it "should take values from the config file" do
-    FakeFS do
-      config = Lavender::Config.new
-      config.defaults.layout.should == 'main'
-    end
+    config = Lavender::Config.new
+    config.defaults.layout.should == 'main'
   end
 
   it "should have pre-defined default values" do
-    FakeFS do
-      config = Lavender::Config.new
-      config.defaults.processor.should == 'haml'
-    end
+    config = Lavender::Config.new
+    config.defaults.processor.should == 'haml'
   end
 end
