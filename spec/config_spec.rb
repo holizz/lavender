@@ -2,8 +2,12 @@ require 'spec_helper'
 
 describe Lavender::Config do
   before do
-    setup_sample_project
     FakeFS.activate!
+    stub_files 'config.yml' => <<END
+---
+defaults:
+  layout: main
+END
   end
 
   after do
