@@ -12,6 +12,9 @@ processor: raw
 ---
 <audio src="girlfriendboy.wav"></audio>
 END
+    'pages/igonreme.txt' => <<END,
+Ignore this!!!
+END
   }
 
   FakeFS do

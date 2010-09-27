@@ -15,4 +15,13 @@ describe Lavender::Static do
 END
     end
   end
+
+  it "should ignore " do
+    FakeFS do
+      c = Lavender::Static.new
+      c.run
+      File.should_not exist 'compiled/ignoreme.txt'
+      File.should_not exist 'compiled/ignoreme'
+    end
+  end
 end

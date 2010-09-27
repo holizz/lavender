@@ -7,7 +7,7 @@ module Lavender
     end
 
     def run
-      Dir["#{path(:pages)}/**/*"].each do |file|
+      Dir["#{path(:pages)}/**/*.yml"].each do |file|
         target = file.sub(/^#{path(:pages)}/, path(:compiled))
         target.sub!(/\.yml$/, '')
 
