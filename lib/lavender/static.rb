@@ -11,7 +11,7 @@ module Lavender
 
       layouts = {}
       Dir["#{path(:layouts)}/**/*"].each do |file|
-        name, ext = File.basename(file).match(/^(.+)\.([^\.]+)$/)[1..-1]
+        name, ext = file.sub(/^#{path(:layouts)}\//,'').match(/^(.+)\.([^\.]+)$/)[1..-1]
         layouts[name.to_sym] = {ext.to_sym => File.read(file)}
       end
 

@@ -5,6 +5,9 @@ def setup_sample_project
 defaults:
   layout: main
 END
+##########
+# Pages
+##########
     'pages/index.html.yml' => <<END,
 ---
 layout: null
@@ -18,10 +21,25 @@ END
     'pages/igonreme.txt' => <<END,
 Ignore this!!!
 END
+    'pages/refectory.html.yml' => <<END,
+---
+layout: clarissa/explains
+processor: raw
+---
+Hello there
+END
+##########
+# Layouts
+##########
     'layouts/main.erb' => <<END,
 <body>
   <%= yield %>
 </body>
+END
+    'layouts/clarissa/explains.erb' => <<END,
+<noscript>
+  <%= yield %>
+</noscript>
 END
   }
 

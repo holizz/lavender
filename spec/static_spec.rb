@@ -33,4 +33,14 @@ END
 </body>
 END
   end
+
+  it "should handle layouts in subdirectories" do
+    File.should exist 'compiled/refectory.html'
+    File.read('compiled/refectory.html').should == <<END
+<noscript>
+  Hello there
+
+</noscript>
+END
+  end
 end
