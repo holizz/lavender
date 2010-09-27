@@ -14,7 +14,7 @@ describe Lavender::Static do
 
   it "should compile raw files" do
     File.should exist 'compiled/index.html'
-    File.read('compiled/index.html').should == <<END.strip
+    File.read('compiled/index.html').should == <<END
 <audio src="girlfriendboy.wav"></audio>
 END
   end

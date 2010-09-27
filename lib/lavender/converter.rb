@@ -6,19 +6,16 @@ module Lavender
     end
 
     def render
-      yaml = YAML.load_stream @options[:page]
+      yaml = @options[:page]
       conf = nil
       page = nil
 
-      case yaml[0]
-      when String
-        conf = {}
-        page = yaml[0]
-      when Hash
-        conf = yaml[0]
-        page = yaml[1]
+      if yaml.match /\A---\s?\n(.+?\n)---\s?\n(.*)\Z/m
+        conf = YAML.load($1)
+        page = $2
       else
-        raise ArgumentError, 'first document must be Hash or String'
+        conf = {}
+        page = yaml
       end
 
       pro = if conf.has_key? 'processor'

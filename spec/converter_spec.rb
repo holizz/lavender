@@ -33,7 +33,9 @@ END
 
     c = Lavender::Converter.new(:page => page)
 
-    c.render.should == "<p>Document content.</p>"
+    c.render.should == <<END
+<p>Document content.</p>
+END
   end
 
   it "should render pages with a layout" do
@@ -132,6 +134,39 @@ END
 
   </body>
 </html>
+END
+  end
+
+  it "should not try to parse HAML as YAML" do
+    page = <<END
+---
+layout: null
+---
+%p
+  %img{:src => "hamsterdance.gif"}
+END
+
+    c = Lavender::Converter.new(:page => page, :defaults => {:processor => :haml})
+
+    c.render.should == <<END
+<p>
+  <img src='hamsterdance.gif' />
+</p>
+END
+  end
+
+  it "should not try to parse HAML as YAML (no preamble)" do
+    page = <<END
+%p
+  %img{:src => "hamsterdance.gif"}
+END
+
+    c = Lavender::Converter.new(:page => page, :defaults => {:processor => :haml})
+
+    c.render.should == <<END
+<p>
+  <img src='hamsterdance.gif' />
+</p>
 END
   end
 end
