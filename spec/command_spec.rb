@@ -11,4 +11,8 @@ describe Lavender::Command do
   it "should have a placeholder for Server" do
     lambda { Lavender::Command.run(%w[server]) }.should raise_error
   end
+
+  it "should bork on unrecognised commands" do
+    lambda { Lavender::Command.run(%w[on the ning nang nong]) }.should raise_error
+  end
 end

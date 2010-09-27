@@ -7,6 +7,8 @@ module Lavender
         static.run
       when 'server'
         raise ArgumentError, "Not yet implemented"
+      else
+        raise ArgumentError, "Command not recognised"
       end
     end
   end
