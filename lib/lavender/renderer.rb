@@ -17,7 +17,7 @@ module Lavender
         end
         ERB.new(@input).result(binding)
       when :haml
-        Haml::Engine.new(@input).to_html(Object.new, @vars, &block)
+        Haml::Engine.new(@input, :format => :html5).to_html(Object.new, @vars, &block)
       end
     end
   end
