@@ -150,7 +150,7 @@ END
 
     c.render.should == <<END
 <p>
-  <img src='hamsterdance.gif' />
+  <img src='hamsterdance.gif'>
 </p>
 END
   end
@@ -165,7 +165,7 @@ END
 
     c.render.should == <<END
 <p>
-  <img src='hamsterdance.gif' />
+  <img src='hamsterdance.gif'>
 </p>
 END
   end
