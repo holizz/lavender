@@ -11,7 +11,7 @@ module Lavender
       # Public
       Dir["#{path(:public)}/**/*"].each do |file|
         out = file.sub(/^#{path(:public)}/, path(:compiled))
-        write_file out, File.read(file)
+        write_file out, File.read(file) unless File.directory? file
       end
 
       # Layouts
