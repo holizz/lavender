@@ -6,6 +6,7 @@ describe Lavender::Static do
   end
 
   after do
+    FileUtils.rm_rf '.'
     FakeFS.deactivate!
   end
 
@@ -35,6 +36,9 @@ END
   it "should handle layouts and processing languages" do
     stub_files_and_run(
       'pages/hamster.html.yml' => <<END,
+---
+layout: main
+---
 %p Text
 END
       'layouts/main.erb' => <<END)

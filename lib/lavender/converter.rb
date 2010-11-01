@@ -35,10 +35,12 @@ module Lavender
       layout = layout.to_sym unless layout.nil?
       if layout
         hsh = @options[:layouts][layout]
-        pro = hsh.keys.first
-        content = hsh[pro]
-        r = Renderer.new(pro, content)
-        output = r.render(conf) { output }
+        if hsh
+          pro = hsh.keys.first
+          content = hsh[pro]
+          r = Renderer.new(pro, content)
+          output = r.render(conf) { output }
+        end
       end
 
       output
